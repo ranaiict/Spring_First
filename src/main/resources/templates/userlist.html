@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<div th:replace="fragments/headerPart:: div"></div>
+<div th:replace="fragments/sidebar:: div"></div>
+
+<h2>User List</h2>
+<div class="block" th:if="${not #lists.isEmpty(userList)}">
+    <table class="data display datatable" id="example">
+        <p>[[${result}]]</p>
+        <thead>
+        <tr>
+            <th>Sl. No.</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd gradeX" th:each="user, iterator : ${userList}">
+            <td th:text="${iterator.index + 1}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.designation}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phoneNo}"></td>
+            <td><a th:href="@{'/edit/' + ${user.id}}">Edit</a> || <a th:href="@{'/delete/' + ${user.id}}">Delete</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+
+<div th:replace="fragments/footer :: div"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setupLeftMenu();
+        $('.datatable').dataTable();
+        setSidebarHeight();
+    });
+</script>

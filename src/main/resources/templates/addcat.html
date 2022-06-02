@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<div th:replace="fragments/headerPart:: div"></div>
+<div th:replace="fragments/sidebar:: div"></div>
+
+                <h2>Add New Category</h2>
+               <div class="block copyblock"> 
+                 <form>
+                    <table class="form">					
+                        <tr>
+                            <td>
+                                <input type="text" placeholder="Enter Category Name..." class="medium" />
+                            </td>
+                        </tr>
+						<tr> 
+                            <td>
+                                <input type="submit" name="submit" Value="Save" />
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<div th:replace="fragments/footer :: div"></div>

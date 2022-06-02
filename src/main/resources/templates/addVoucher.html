@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<div th:replace="fragments/headerPart:: div"></div>
+<div th:replace="fragments/sidebar:: div"></div>
+
+<h2>Add New Voucher</h2>
+<div class="block" style="width: 40%; float: left">
+    <p>[[${result}]]</p>
+    <form action="/transaction/addVoucherData" method="post" enctype="multipart/form-data">
+        <table class="form">
+
+            <tr>
+                <td>
+                    <label>Project Name</label>
+                </td>
+                <td>
+                    <select id="select" name="project.id" class="large">
+                        <option value="0">Select One</option>
+                        <option th:each="option : ${projectList}" th:value="${option.id}" th:text="${option.projectName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Voucher No.</label>
+                </td>
+                <td>
+                    <input type="text" name="voucherNo" th:value="${#calendars.format(#calendars.createNow(), 'yyyy/MM/')}" class="large"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Date</label>
+                </td>
+                <td>
+                    <input type="date" name="date"  class="large"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+                <td>
+                    <input type="text" name="description"  class="large"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Taka</label>
+                </td>
+                <td>
+                    <input type="text" name="amount" class="large"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="submit" Value="Save"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+    <div style="width: 60%; float: right ">
+        <table class="data display datatable" id="example">
+            <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Project Name</th>
+                <th>Voucher</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd gradeX" th:each="trans, iterator : ${transactionList}">
+                <td th:text="${iterator.index + 1}"></td>
+                <td th:text="${trans.project.projectName}"></td>
+                <td th:text="${trans.voucherNo}"></td>
+                <td th:text="${#temporals.format(trans.date,'dd-MM-yyyy')}"></td>
+                <td th:text="${trans.description}"></td>
+                <td th:text="${#strings.replace(trans.amount, '.0', '.00')}"></td>
+                <td><a href="">Edit</a> || <a href="">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<div th:replace="fragments/footer :: div"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setupLeftMenu();
+        $('.datatable').dataTable();
+        setSidebarHeight();
+    });
+</script>

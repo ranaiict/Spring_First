@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<div th:replace="fragments/headerPart:: div"></div>
+<div th:replace="fragments/sidebar:: div"></div>
+
+<h2>Edit User</h2>
+<div class="block">
+    <form action="/adduserdata" method="post" enctype="multipart/form-data">
+        <table class="form">
+                <input type="hidden" name="id" th:value="${userById.id}">
+            <tr>
+                <td>
+                    <label>Name</label>
+                </td>
+                <td>
+                    <input type="text" name="name" th:value="${userById.name}" class="medium" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Designation</label>
+                </td>
+                <td>
+                    <input type="text" name="designation" th:value="${userById.designation}" class="medium" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email</label>
+                </td>
+                <td>
+                    <input type="text" name="email" th:value="${userById.email}"  class="medium" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Mobile</label>
+                </td>
+                <td>
+                    <input type="text" name="phoneNo" th:value="${userById.phoneNo}"  class="medium" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Username</label>
+                </td>
+                <td>
+                    <input type="text" name="username" th:value="${userById.username}" class="medium" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="submit" Value="Update" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
+</div>
+
+<div th:replace="fragments/footer :: div"></div>
